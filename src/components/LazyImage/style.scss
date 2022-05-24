@@ -1,0 +1,44 @@
+.pulse {
+  animation: pulse 1.4s cubic-bezier(0.4, 0, 0.6, 1) infinite reverse;
+}
+
+.loading {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.loadable {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(211, 223, 232, 0.8) 30%,
+    rgba(169, 184, 197, 0.8) 38%,
+    rgba(168, 182, 193, 0.8) 41%,
+    rgba(168, 182, 193, 0.9) 50%,
+    rgba(168, 182, 193, 0.9) 50%,
+    rgba(169, 184, 197, 0.9) 51%,
+    rgba(211, 223, 232, 0.9) 57%,
+    rgba(211, 223, 232, 0.9) 80%,
+    rgba(211, 223, 232, 0.9) 80%
+  );
+  background-size: 1200% 1200%;
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: fill;
+    border-radius: inherit;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    background-position: 0% 92%;
+  }
+  100% {
+    background-position: 100% 9%;
+  }
+}

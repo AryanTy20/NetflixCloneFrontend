@@ -1,0 +1,197 @@
+$error: #c96c05;
+$inputWidth: 30em;
+
+.settingBox {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+
+  .blur {
+    filter: blur(2px);
+  }
+
+  .setting {
+    margin-top: 5em;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2),
+      0 0 2px 2px rgba(255, 255, 255, 0.9);
+    // width: clamp(30em, 50vw, 80em);
+    padding: 3em;
+    border-radius: 0.25em;
+
+    h1 {
+      text-align: center;
+      font-size: var(--fs-xl);
+      margin-bottom: 0.5em;
+    }
+
+    .accountInfo {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      .info {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        .input_field {
+          .input_error {
+            display: none;
+            padding: 0.5em 0.2em;
+            font-size: 13px;
+            color: $error;
+          }
+
+          input {
+            font-size: var(--fs-n);
+            background-color: black;
+
+            outline: none;
+            border: 0;
+            border-bottom: solid #333333 2px;
+            color: white;
+            padding: 0.2em 1em;
+            border-radius: 0.25em;
+            line-height: 2.5em;
+            margin-bottom: 0.5em;
+
+            &:invalid[focused="true"] {
+              margin-bottom: 0;
+              border-bottom: solid 2px $error;
+            }
+            &:invalid[focused="true"] ~ .input_error {
+              display: block;
+            }
+
+            &:read-only {
+              cursor: default;
+            }
+
+            &:focus:not(:read-only) {
+              filter: brightness(125%);
+            }
+          }
+        }
+
+        .displayOnly {
+          .displayInput {
+            width: $inputWidth;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+
+            label {
+              position: absolute;
+              inset: 0;
+              text-indent: 2%;
+            }
+            input {
+              width: 100%;
+              font-size: var(--fs-n);
+              background-color: black;
+              //   background-color: #333333;
+              outline: none;
+              border: 0;
+              border-bottom: solid #333333 2px;
+              color: white;
+              padding: 0.3em 0 0 0;
+              text-indent: 2%;
+              border-radius: 0.25em;
+              line-height: 2.5em;
+              margin-bottom: 0.5em;
+            }
+          }
+        }
+      }
+
+      .buttons {
+        width: 100%;
+        // border: Solid green 2px;
+        margin-top: 2em;
+        padding: 0 0.5em 0 1em;
+        button {
+          width: 45%;
+          padding: 0.5em 1em;
+          font-size: var(--fs-n);
+          font-weight: 500;
+          border: none;
+          outline: none;
+          border-radius: 0.2em;
+          cursor: pointer;
+          transition: filter 0.3s;
+
+          &:not(:first-child) {
+            margin-left: 1em;
+          }
+        }
+      }
+    }
+  }
+}
+
+.confirmBox {
+  position: absolute;
+  min-height: 100vh;
+  width: 100%;
+  display: grid;
+  place-items: center;
+
+  @keyframes slideIn {
+    from {
+      transform: scale(0.9);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
+  .confirmModal {
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2),
+      0 0 2px 2px rgba(255, 255, 255, 0.5);
+    padding: 1em;
+    border-radius: 0.25em;
+    background-color: rgba(black, 0.8);
+    z-index: 1;
+    animation: slideIn 0.3s forwards;
+
+    .info {
+      margin: 1em 0;
+      color: red;
+    }
+
+    .buttons {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      button {
+        padding: 0.5em 1em;
+        font-size: var(--fs-n);
+        font-weight: 500;
+        border: none;
+        outline: none;
+        border-radius: 0.2em;
+        cursor: pointer;
+        transition: filter 0.3s;
+
+        &:hover {
+          filter: brightness(90%);
+        }
+        &:not(:first-child) {
+          margin-left: 1em;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .setting {
+    width: 95vw !important;
+    input {
+      // width: 70vw !important;
+    }
+  }
+}

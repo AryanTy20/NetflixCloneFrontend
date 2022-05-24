@@ -1,0 +1,52 @@
+// $cardwidth: clamp(12em, 20vw, 18em);
+// $cardwidth: clamp(12em, 12vw + 10em, 16em);
+$cardwidth: clamp(12em, 12vw + 10em, 16em);
+
+.whislistBox {
+  position: absolute;
+  inset: 0;
+  margin-top: 7em;
+  padding: 1em;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax($cardwidth, 1fr));
+  grid-template-rows: clamp(18em, 24em + 5vw, 24em);
+  gap: 1em;
+
+  .card {
+    height: clamp(18em, 24em + 5vw, 24em);
+    z-index: 22;
+    position: relative;
+    border-radius: 0.25em;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    &:is(:hover, :active) {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.noList {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+@media screen and (max-width: 400px) {
+  .whislistBox {
+    grid-template-rows: 1fr !important;
+  }
+}
+
+@media screen and (max-width: 767px) and (min-width: 401px) {
+  $cardwidth: clamp(12em, 10em + 10vw, 15em);
+  .whislistBox {
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax($cardwidth, 1fr)
+    ) !important;
+    grid-template-rows: clamp(18em, 15em + 20vw, 25em) !important;
+    .card {
+      height: clamp(18em, 15em + 20vw, 25em) !important;
+    }
+  }
+}

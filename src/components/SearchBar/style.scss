@@ -1,0 +1,111 @@
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 0 -0.3em 0 0;
+
+  .search_input {
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-size: var(--fs-l);
+    transform: scale(0);
+    transform-origin: right;
+    transition: all ease 0.3s;
+
+    .close {
+      position: absolute;
+      right: 0;
+      height: auto;
+      font-size: inherit;
+      cursor: pointer;
+    }
+    input[type="search"] {
+      transition: all ease 0.3s;
+      width: clamp(15em, 20vw, 20em);
+      color: inherit;
+      font-size: inherit;
+      background: rgba(black, 0.3);
+      outline: none;
+      font-size: var(--fs-n);
+      border-radius: 0.1em;
+      border: solid white 2px;
+      padding: 0.5em 2em 0.5em 1em;
+
+      &::-webkit-search-cancel-button {
+        display: none;
+      }
+
+      &::placeholder {
+        color: white;
+      }
+    }
+  }
+  .search_input[opensearch="true"] {
+    transform: scale(100%);
+  }
+
+  .search {
+    border-radius: 50%;
+    font-size: var(--fs-xl);
+    cursor: pointer;
+  }
+}
+
+.hideOther {
+  display: none;
+}
+
+@media screen and (max-width: 400px) {
+  .search-box {
+    .search_input {
+      width: 8em !important;
+      transform: scale(0) translateX(-200%);
+    }
+    .search_input[opensearch="true"] {
+      width: 9em !important;
+      transform: scale(100%) translateX(-15%) !important;
+    }
+
+    input[type="search"] {
+      width: 100% !important;
+    }
+
+    .search {
+      position: absolute;
+      right: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) and (min-width: 401px) {
+  .search-box {
+    .search_input {
+      width: 10em !important;
+      transform: scale(0) translateX(-200%);
+    }
+    .search_input[opensearch="true"] {
+      transform: scale(100%) translateX(-15%) !important;
+    }
+
+    input[type="search"] {
+      min-width: 100% !important;
+    }
+
+    .search {
+      position: absolute;
+      right: 0;
+    }
+  }
+}
+
+@media screen and(min-width:768px) and (max-width: 1023px) {
+}
+// @media screen and (max-width: 400px) {
+// }
+
+// @media screen and (max-width: 767px) and (min-width: 401px) {
+// }
+
+// @media screen and(min-width:768px) and (max-width: 1023px) {
+// }

@@ -1,0 +1,319 @@
+$cardwidth: clamp(12em, 20vw, 18em);
+
+.watchBox {
+  .backdrop {
+    min-height: 100vh;
+    width: 100%;
+    position: absolute;
+
+    &::before {
+      position: absolute;
+      content: "";
+      inset: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(black, 0.3);
+    }
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .infoitems {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 15%);
+    width: clamp(25em, 88vw, 100em);
+    padding: 2em;
+    background-color: rgba(black, 0.5);
+    overflow-y: scroll;
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0.2),
+      5px 5px 5px -5px rgba(255, 255, 255, 0.3);
+
+    &::-webkit-scrollbar {
+      width: 0.5em;
+      background: #1b2023;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #5f6164;
+      border-radius: 1ex;
+      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+    }
+
+    .infobox {
+      display: grid;
+      grid-template: auto / 4fr 8fr;
+      grid-template-areas:
+        "poster meta"
+        "desc desc";
+
+      .controls {
+        .poster {
+          height: clamp(18em, 10em + 30vw, 35em);
+          width: clamp(16em, 5em + 25vw, 25em);
+          transition: transform ease 0.3s;
+          box-shadow: 0 0 5px 5px rgba(0, 0, 0.2),
+            5px 5px 5px -5px rgba(255, 255, 255, 0.5);
+
+          &:hover {
+            transform: scale(1.05);
+          }
+
+          img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+          }
+        }
+        .controlbtn {
+          margin: 2em 0;
+          display: flex;
+          align-items: center;
+
+          .playbtn {
+            padding: 0.6em 1em;
+            font-size: var(--fs-n);
+            font-weight: 500;
+            border: none;
+            outline: none;
+            border-radius: 0.2em;
+            cursor: pointer;
+            transition: filter 0.3s;
+            position: relative;
+            padding-left: 2em;
+
+            &::before {
+              position: absolute;
+              content: "\2023";
+              left: 20%;
+              transform: scale(2);
+            }
+
+            &:hover {
+              filter: brightness(0.9);
+            }
+
+            &:last-child {
+              margin-left: 1em;
+              background-color: rgba(gray, 0.8);
+              color: white;
+            }
+          }
+
+          .addIcon,
+          .checkIcon {
+            font-size: var(--fs-xl);
+            cursor: pointer;
+            margin-left: 0.5em;
+
+            &:hover {
+              filter: brightness(0.9);
+            }
+          }
+        }
+      }
+
+      .metaInfo {
+        grid-area: meta;
+        margin-right: auto;
+        padding: 0 1em;
+        font-size: var(--fs-n);
+        overflow: hidden;
+        color: white;
+        width: 100%;
+
+        // font-weight: bold;
+        .title {
+          font-size: var(--fs-xxl);
+          text-overflow: ellipsis;
+          overflow: hidden;
+          // Addition lines for 2 line or multiline ellipsis
+          display: -webkit-box !important;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          white-space: normal;
+        }
+        .rating {
+          margin: 1em 0;
+          display: flex;
+          align-items: center;
+
+          .languages {
+            margin-left: 1em;
+          }
+        }
+
+        .genre {
+          line-height: 2em;
+          .genreChild {
+            span {
+              overflow: hidden;
+              word-wrap: normal;
+              text-overflow: ellipsis;
+              &:not(:first-child) {
+                margin-left: 0.5em;
+              }
+            }
+          }
+        }
+
+        .seasons {
+          line-height: 1.5em;
+          width: 100%;
+          max-height: 10em;
+          overflow: scroll;
+
+          th {
+            &:first-child {
+              text-align: left;
+            }
+          }
+
+          td {
+            text-align: center;
+            margin: 0.3em 0;
+
+            &:first-child {
+              text-align: left;
+            }
+          }
+          // color: red;
+        }
+      }
+
+      .desc {
+        margin: 2em 0 1em 0;
+        grid-area: desc;
+        // line-height: 1.3em;
+        font-size: var(--fs-n);
+        text-align: justify;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        // Addition lines for 2 line or multiline ellipsis
+        display: -webkit-box !important;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+        white-space: normal;
+      }
+    }
+  }
+}
+
+.other {
+  display: block;
+  margin-top: 10em;
+  .recommendContainer {
+    padding: 1em;
+
+    h2 {
+      filter: brightness(100%);
+      margin: 1em 0;
+      font-size: var(--fs-l);
+    }
+    .recommend {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax($cardwidth, 1fr));
+      gap: 1em;
+      margin-bottom: 2em;
+
+      .card {
+        height: clamp(18em, 10em + 20vw, 26em);
+        z-index: 22;
+        position: relative;
+        border-radius: 0.25em;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+        &:is(:hover, :active) {
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
+}
+
+.player-wrapper {
+  position: absolute;
+  inset: 0;
+  top: 10%;
+  width: 80%;
+  margin-inline: auto;
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0.2),
+    5px 5px 5px -5px rgba(255, 255, 255, 0.3);
+  aspect-ratio: 16/9;
+  // padding-top: 56.25%; /* Player ratio: 100 / (1280 / 720) */
+}
+
+//media queries
+
+@media screen and (max-width: 400px) {
+  $cardwidth: clamp(12em, 12vw, 18em) !important;
+
+  .infoitems {
+    max-height: 50em !important;
+
+    .infobox {
+      grid-template-areas:
+        "poster x"
+        "meta meta"
+        "desc desc" !important;
+
+      .metaInfo {
+        padding: 0 !important;
+      }
+    }
+  }
+
+  .other {
+    margin-left: 1em !important;
+    .recommend {
+      .card {
+        height: 22em !important;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 767px) and (min-width: 401px) {
+  $cardwidth: clamp(12em, 12vw, 18em) !important;
+
+  .infoitems {
+    max-height: 50em !important;
+
+    .infobox {
+      grid-template-areas:
+        "poster x"
+        "meta meta"
+        "desc desc" !important;
+
+      .metaInfo {
+        padding: 0 !important;
+      }
+    }
+  }
+
+  .other {
+    .recommend {
+      .card {
+        height: clamp(15em, 10em + 20vw, 25em) !important;
+      }
+    }
+  }
+}
+
+@media screen and(min-width:768px) and (max-width: 1023px) {
+  $cardwidth: clamp(12em, 15vw, 18em) !important;
+  .infoitems {
+    .poster {
+      height: clamp(15em, 10em + 25vw, 28em) !important;
+      width: clamp(12em, 5em + 22vw, 20em) !important;
+    }
+  }
+
+  .other {
+    margin-top: 5em !important;
+  }
+}

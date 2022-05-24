@@ -1,0 +1,149 @@
+.profileContainer {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 6%;
+  z-index: 1;
+
+  h1 {
+    font-size: var(--fs-xxl);
+    text-align: center;
+    margin: 1em 0;
+  }
+
+  .profileBox {
+    min-width: clamp(60em, 40vw, 40vw);
+    padding: 1em;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    .card {
+      text-align: center;
+      cursor: pointer;
+      transition: transform ease 0.3s;
+      margin-inline: auto;
+      position: relative;
+
+      .edits {
+        position: absolute;
+        inset: 0;
+        height: 80%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .icon {
+          font-size: var(--fs-xl);
+        }
+      }
+
+      h2 {
+        padding: 0.2em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      &:is(:hover, :active) {
+        transform: scale(1.1);
+      }
+
+      .profile {
+        height: 10em;
+        width: 10em;
+
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+
+  .upload {
+    margin: 1em 0;
+    // border: Solid green 2px;
+    width: 50vw;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .controls {
+      // border: Solid lime 2px;
+      // width: 12em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .disable {
+      pointer-events: none;
+      opacity: 0.3;
+    }
+    .icon {
+      font-size: var(--fs-xxl);
+      border: Solid white 2px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: filter ease 0.3s;
+
+      &:not(:first-child) {
+        margin-left: 0.5em;
+      }
+
+      &:hover {
+        filter: brightness(80%);
+      }
+    }
+    .edit,
+    .delete {
+      padding: 0.2em;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .profileContainer {
+    h1 {
+      font-size: var(--fs-xl) !important;
+      margin-top: 5em !important;
+    }
+    .profileBox {
+      min-width: 100vw !important;
+    }
+    .icon {
+      font-size: var(--fs-xl) !important;
+    }
+    .card {
+      height: 10em !important;
+
+      .icon {
+        font-size: var(--fs-l) !important;
+      }
+
+      .profile {
+        height: 7em !important;
+        width: 7em !important;
+      }
+
+      h2 {
+        // border: Solid pink 2px;
+        width: 100% !important;
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+@media screen and(min-width:768px) and (max-width: 1023px) {
+  .profileContainer {
+    .profileBox {
+      width: 40em !important;
+    }
+  }
+}

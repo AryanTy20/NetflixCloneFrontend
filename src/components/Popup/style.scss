@@ -1,0 +1,190 @@
+.popModal {
+  display: grid;
+  grid-template: auto / 4fr 8fr;
+  grid-template-areas:
+    "poster meta"
+    "desc desc";
+
+  .poster {
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-area: poster;
+
+    .card {
+      border-radius: 0.25em;
+      height: 30em;
+      width: 20em;
+      position: relative;
+      transition: all ease 0.3s;
+      overflow: hidden;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+
+      img {
+        border-radius: inherit;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .controlbtn {
+      margin: 2em 0;
+      display: flex;
+      align-items: center;
+
+      // width: 100%;
+
+      .playbtn {
+        padding: 0.5em 1em;
+        font-size: var(--fs-n);
+        font-weight: 500;
+        border: none;
+        outline: none;
+        border-radius: 0.2em;
+        cursor: pointer;
+        transition: filter 0.3s;
+        position: relative;
+        padding-left: 2em;
+
+        &::before {
+          position: absolute;
+          content: "\2023";
+          left: 20%;
+          transform: scale(2);
+        }
+
+        &:hover {
+          filter: brightness(0.9);
+        }
+
+        &:last-child {
+          margin-left: 1em;
+          background-color: rgba(gray, 0.8);
+          color: white;
+        }
+      }
+
+      .addIcon,
+      .checkIcon {
+        font-size: var(--fs-xl);
+        cursor: pointer;
+        margin-left: 0.5em;
+
+        &:hover {
+          filter: brightness(0.9);
+        }
+      }
+    }
+  }
+
+  .metaInfo {
+    padding: 1em;
+    font-size: var(--fs-n);
+    overflow: hidden;
+
+    // font-weight: bold;
+    .title {
+      font-size: var(--fs-xxl);
+      text-overflow: ellipsis;
+      overflow: hidden;
+      // Addition lines for 2 line or multiline ellipsis
+      display: -webkit-box !important;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      white-space: normal;
+    }
+    .rating {
+      margin: 1em 0;
+      display: flex;
+      align-items: center;
+
+      .languages {
+        margin-left: 1em;
+      }
+    }
+
+    .genre {
+      line-height: 2em;
+      .genreChild {
+        span {
+          overflow: hidden;
+          word-wrap: normal;
+          text-overflow: ellipsis;
+          &:not(:first-child) {
+            margin-left: 0.5em;
+          }
+        }
+      }
+    }
+
+    .seasons {
+      line-height: 1.5em;
+      width: 100%;
+      margin-left: -3px;
+      max-height: 10em;
+      overflow: scroll;
+
+      th {
+        // border-bottom: 1px solid green;
+        &:first-child {
+          text-align: left;
+        }
+      }
+
+      td {
+        text-align: center;
+        margin: 0.3em 0;
+
+        &:first-child {
+          text-align: left;
+        }
+      }
+      // color: red;
+    }
+  }
+  .desc {
+    margin: 0em 1em 1em 1em;
+    grid-area: desc;
+    // line-height: 1.3em;
+    font-size: var(--fs-n);
+    text-align: justify;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    // Addition lines for 2 line or multiline ellipsis
+    display: -webkit-box !important;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .popModal {
+    grid-template-areas:
+      "poster poster"
+      "meta meta"
+      "desc desc";
+
+    overflow-y: scroll;
+
+    .poster {
+      .card {
+        height: 20em !important;
+        width: 15em !important;
+      }
+    }
+
+    .metaInfo {
+      width: 100vw !important;
+
+      .title {
+        font-size: var(--fs-xl) !important;
+      }
+    }
+  }
+}

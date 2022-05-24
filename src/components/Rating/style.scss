@@ -1,0 +1,32 @@
+.circular-progress {
+  position: relative;
+  height: 2.5em;
+  width: 2.5em;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+
+  &::before {
+    content: "";
+    position: absolute;
+    height: 84%;
+    width: 84%;
+    background-color: #081c22;
+    border-radius: 50%;
+  }
+
+  &::after {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    content: "";
+    border-radius: 50%;
+    box-shadow: 0 0 5px 5px #081c22;
+  }
+}
+.value-container {
+  position: relative;
+  font-size: var(--fs-xs);
+  color: #231c3d;
+  font-weight: bold;
+}

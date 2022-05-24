@@ -1,0 +1,54 @@
+$width: clamp(12em, 12vw + 10em, 16em);
+
+.main {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  // overflow: scroll;
+
+  .content {
+    position: absolute;
+    top: 8em;
+    right: 0;
+    left: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax($width, 1fr));
+    padding: 0 1em;
+    // overflow-y: scroll;
+    gap: 2em;
+
+    .card {
+      // height: clamp(20em, 20vw - 1em, 24em);
+      height: clamp(18em, 24em + 5vw, 24em);
+      z-index: 22;
+      position: relative;
+      border-radius: 0.25em;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      &:is(:hover, :active) {
+        transform: scale(1.05);
+      }
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 767px) and (min-width: 401px) {
+  $cardwidth: clamp(12em, 10em + 10vw, 15em);
+  .content {
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax($cardwidth, 1fr)
+    ) !important;
+    gap: 1em;
+
+    .card {
+      height: clamp(18em, 15em + 20vw, 25em) !important;
+    }
+  }
+}

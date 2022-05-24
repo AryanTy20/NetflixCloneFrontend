@@ -1,0 +1,90 @@
+.container {
+  min-height: 100vh;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  position: absolute;
+  inset: 0;
+
+  &::after {
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+    background-color: rgba(black, 0.4);
+  }
+
+  @keyframes scaleIn {
+    0% {
+      transform: scale(0.8) translateY(20%);
+    }
+    100% {
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  form {
+    box-shadow: 0 0 5px 1px gray;
+    width: 25em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    border-radius: 0.25em;
+    z-index: 1;
+    background-color: black;
+    animation: scaleIn 0.5s forwards;
+
+    .error {
+      color: red;
+      margin: 0.5em 0;
+      font-size: var(--fs-s);
+    }
+
+    input {
+      margin: 0.5em 0;
+      width: 100%;
+      font-size: var(--fs-n);
+      background-color: #333333;
+      outline: none;
+      border: 0;
+      color: white;
+      padding: 0.2em 1em;
+      border-radius: 0.25em;
+      line-height: 2em;
+    }
+    .buttons {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+
+      .addbtn {
+        min-width: 75%;
+      }
+      .updatebtn {
+        min-width: 65%;
+      }
+      button {
+        padding: 0.4em 0.8em;
+        border: solid red 2px;
+        font-size: var(--fs-n);
+        border-radius: 0.25em;
+        background-color: red;
+        color: white;
+        cursor: pointer;
+
+        &:last-child {
+          margin-left: 0.5em;
+        }
+      }
+    }
+  }
+
+  .uploadBox {
+    width: 100%;
+  }
+
+  .imgError {
+    border: dotted 4px red;
+  }
+}
