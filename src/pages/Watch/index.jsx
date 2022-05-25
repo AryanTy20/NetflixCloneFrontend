@@ -52,6 +52,7 @@ const Watch = () => {
         setRecommend(res.data?.recommend.results);
         setData(res.data.data);
         setIsLoading(false);
+        console.log(res.data);
       } catch (err) {
         if (err.response?.status == 401) return;
         if (!err.response) {
