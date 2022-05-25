@@ -129,9 +129,6 @@ const Slider = () => {
             className="modal"
             ref={modalRef}
           >
-            <button className="close" onClick={() => setShowPop(false)}>
-              X
-            </button>
             <MoreInfoPopUp Data={data} setShowPop={setShowPop} />
           </motion.div>
         </div>

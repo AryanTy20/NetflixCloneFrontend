@@ -156,19 +156,6 @@
   width: 100vw;
   background-color: rgba(black, 0.6);
 
-  .close {
-    position: absolute;
-    right: 5%;
-    padding: 0.2em 0.4em;
-    border: none;
-    outline: none;
-    background-color: transparent;
-    font-weight: bold;
-    font-size: var(--fs-n);
-    color: white;
-    cursor: pointer;
-  }
-
   .modal {
     position: relative;
     top: 12%;
