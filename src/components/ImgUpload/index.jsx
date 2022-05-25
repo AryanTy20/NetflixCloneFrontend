@@ -111,7 +111,7 @@ const ImageUpload = ({ type, data, edit, initial, close }) => {
               value={files}
               maxFiles={1}
               // header={false}
-              maxFileSize={2998000}
+              maxFileSize={100000}
               label="Drag'n drop files here or click to browse"
               accept=".png,.jpeg,.jpg"
               uploadingMessage={"Uploading..."}

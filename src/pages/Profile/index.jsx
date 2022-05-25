@@ -39,7 +39,6 @@ const Profile = () => {
         const res = await axiosPrivate.get("auth/users");
         setUsers(res?.data);
         setIsLoading(false);
-        console.log(res.data);
       } catch (err) {
         if (err.response?.status == 401) return;
         if (!err.response) {
