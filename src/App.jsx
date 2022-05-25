@@ -17,6 +17,8 @@ const Profile = lazy(() => import("./pages/Profile"));
 const Setting = lazy(() => import("./pages/settings"));
 
 const loaderStyle = {
+  position: "absolute",
+  inset: "0",
   display: "grid",
   placeItems: "center",
   minHeight: "100vh",

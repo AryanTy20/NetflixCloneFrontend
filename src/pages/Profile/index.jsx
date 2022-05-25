@@ -6,11 +6,7 @@ import {
   MdDelete as DeleteIcon,
 } from "react-icons/md";
 import { Navbar, Loader, CheckInternet, ImageUpload } from "../../components";
-import {
-  useAxiosPrivate,
-  useGlobalState,
-  useLocalStorageImg,
-} from "../../hooks";
+import { useAxiosPrivate, useLocalStorageImg } from "../../hooks";
 import "./style.scss";
 
 const Profile = () => {
@@ -20,7 +16,6 @@ const Profile = () => {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [error, setError] = useState(false);
-  const { globalState, setGlobalState } = useGlobalState();
   const [showAddUser, setShowAddUser] = useState(false);
   const [showEditUser, setShowEditUser] = useState(false);
   const [showDeleteUser, setShowDeleteUser] = useState(false);
@@ -77,13 +72,11 @@ const Profile = () => {
   const edits = async (data, index) => {
     seteditIndex(index);
     if (showDeleteUser) {
-      console.log(data.username);
       try {
         await axiosPrivate.delete(`auth/deleteuser/${data.username}`);
         setUsers([...users.filter((el) => el.username != data.username)]);
       } catch (err) {
-        console.log("delete eerror");
-        console.log(err);
+        throw err;
       }
     }
     if (showEditUser) {

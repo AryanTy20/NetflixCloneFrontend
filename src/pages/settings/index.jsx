@@ -71,7 +71,6 @@ const Setting = () => {
   const updateProfile = async () => {
     if (error) console.log(error);
     const change = changeHandler();
-    console.log(emailChanged);
     if (emailChanged) {
       setShowOtp(true);
       return;

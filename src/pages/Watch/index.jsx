@@ -237,7 +237,6 @@ const Watch = () => {
         <div className="player-wrapper" ref={videoRef}>
           <ReactPlayer
             className="react-player"
-            onReady={videoLoaded}
             onEnded={() => setShowVideo(false)}
             url={`https://www.youtube.com/watch?v=${videoId}`}
             width="100%"
