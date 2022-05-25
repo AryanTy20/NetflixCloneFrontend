@@ -113,7 +113,7 @@ const ImageUpload = ({ type, data, edit, initial, close }) => {
               // header={false}
               maxFileSize={2998000}
               label="Drag'n drop files here or click to browse"
-              accept=".png,.jpeg,.png"
+              accept=".png,.jpeg,.jpg"
               uploadingMessage={"Uploading..."}
               fakeUploading
               disableScroll
