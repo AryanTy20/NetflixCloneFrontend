@@ -142,12 +142,11 @@ const Watch = () => {
                     <Rating rating={data.vote_average} />
                   </span>
 
-                  {data?.original_language && (
+                  {data?.original_language ? (
                     <span className="languages">
                       <span>Languages : {data?.original_language}</span>
                     </span>
-                  )}
-                  {data.languages && (
+                  ) : (
                     <span className="languages">
                       <span>
                         Languages :

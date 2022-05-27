@@ -1,5 +1,4 @@
 $error: #c96c05;
-$inputWidth: 30em;
 
 .settingBox {
   position: absolute;
@@ -15,8 +14,7 @@ $inputWidth: 30em;
     margin-top: 5em;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2),
       0 0 2px 2px rgba(255, 255, 255, 0.9);
-    // width: clamp(30em, 50vw, 80em);
-    padding: 3em;
+    padding: 2em;
     border-radius: 0.25em;
 
     h1 {
@@ -29,8 +27,10 @@ $inputWidth: 30em;
       display: flex;
       align-items: center;
       flex-direction: column;
+      padding: 1em;
 
       .info {
+        width: 100%;
         display: flex;
         align-items: center;
         flex-direction: column;
@@ -46,7 +46,6 @@ $inputWidth: 30em;
           input {
             font-size: var(--fs-n);
             background-color: black;
-
             outline: none;
             border: 0;
             border-bottom: solid #333333 2px;
@@ -75,8 +74,8 @@ $inputWidth: 30em;
         }
 
         .displayOnly {
+          min-width: 100%;
           .displayInput {
-            width: $inputWidth;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -88,10 +87,8 @@ $inputWidth: 30em;
               text-indent: 2%;
             }
             input {
-              width: 100%;
               font-size: var(--fs-n);
               background-color: black;
-              //   background-color: #333333;
               outline: none;
               border: 0;
               border-bottom: solid #333333 2px;
@@ -108,7 +105,6 @@ $inputWidth: 30em;
 
       .buttons {
         width: 100%;
-        // border: Solid green 2px;
         margin-top: 2em;
         padding: 0 0.5em 0 1em;
         button {
@@ -191,7 +187,7 @@ $inputWidth: 30em;
   .setting {
     width: 95vw !important;
     input {
-      // width: 70vw !important;
+      width: 85vw !important;
     }
   }
 }

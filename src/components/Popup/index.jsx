@@ -52,23 +52,24 @@ const MoreInfoPopUp = ({ Data = "" }) => {
             <span>
               <Rating rating={Data.vote_average} />
             </span>
-            {Data?.original_language && (
+            {Data?.original_language ? (
               <span className="languages">
                 <span>Languages : {Data?.original_language}</span>
               </span>
-            )}
-            <span className="languages">
-              <span>
-                Languages :
-                {Data.languages.map((el, i) => {
-                  if (i == 0) {
-                    return <span key={i}>{el}</span>;
-                  } else {
-                    return <span key={i}> , {el}</span>;
-                  }
-                })}
+            ) : (
+              <span className="languages">
+                <span>
+                  Languages :
+                  {Data.languages.map((el, i) => {
+                    if (i == 0) {
+                      return <span key={i}>{el}</span>;
+                    } else {
+                      return <span key={i}> , {el}</span>;
+                    }
+                  })}
+                </span>
               </span>
-            </span>
+            )}
           </div>
           {Data.tagline && (
             <div className="tagline">

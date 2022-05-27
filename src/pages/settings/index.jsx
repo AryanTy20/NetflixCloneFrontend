@@ -69,7 +69,6 @@ const Setting = () => {
     return change;
   };
   const updateProfile = async () => {
-    if (error) console.log(error);
     const change = changeHandler();
     if (emailChanged) {
       setShowOtp(true);
@@ -80,7 +79,11 @@ const Setting = () => {
       setData({ ...data, username: res.data.username, email: res.data.email });
       setUpdate(false);
     } catch (err) {
-      console.log(err);
+      if (err.response?.status == 401) {
+        return;
+      } else {
+        setError(res.response?.data.message);
+      }
     }
   };
 
@@ -147,7 +150,11 @@ const Setting = () => {
           });
           setUpdate(false);
         } catch (err) {
-          console.log(err);
+          if (err.response?.status == 401) {
+            return;
+          } else {
+            setError(res.response?.data.message);
+          }
         }
       };
 
@@ -168,6 +175,7 @@ const Setting = () => {
           <div
             className={`setting ${showConfirmModal || showOtp ? "blur" : ""}`}
           >
+            {error && <p>{error}</p>}
             <h1> Account Setting</h1>
             <div className="accountInfo">
               <div className="info">

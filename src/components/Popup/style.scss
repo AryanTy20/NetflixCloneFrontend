@@ -86,8 +86,6 @@
     padding: 1em;
     font-size: var(--fs-n);
     overflow: hidden;
-
-    // font-weight: bold;
     .title {
       font-size: var(--fs-xxl);
       text-overflow: ellipsis;
@@ -107,9 +105,20 @@
         margin-left: 1em;
       }
     }
-
+    .tagline {
+      text-align: justify;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      // Addition lines for 2 line or multiline ellipsis
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      white-space: normal;
+    }
     .genre {
-      line-height: 2em;
+      margin: 0.5em 0;
+      line-height: 1.2em;
+      // border: Solid red 2px;
       .genreChild {
         span {
           overflow: hidden;
@@ -181,10 +190,17 @@
 
     .metaInfo {
       width: 100vw !important;
+      padding: 1em !important;
 
       .title {
         font-size: var(--fs-xl) !important;
       }
+      .seasons {
+        margin: 0.3em 0 !important;
+      }
+    }
+    .desc {
+      margin: 0.3em 1em;
     }
   }
 }

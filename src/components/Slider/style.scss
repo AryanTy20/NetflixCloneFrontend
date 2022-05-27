@@ -36,8 +36,10 @@
       .tags {
         color: lightgray;
         display: flex;
+        overflow: hidden;
 
         span {
+          white-space: nowrap;
           font-size: var(--fs-n);
           font-family: "Bebas Neue";
           letter-spacing: 0.1em;
@@ -185,6 +187,9 @@
   }
   .sliderInfo {
     width: 100vw !important;
+    .metaInfo {
+      margin: 0 0.1em !important;
+    }
 
     .title {
       font-size: var(--fs-xl) !important;
@@ -193,6 +198,8 @@
   .showInfo {
     .modal {
       max-width: 70em !important;
+      top: 7em !important;
+      padding: 1em !important;
     }
   }
 }

@@ -1,11 +1,25 @@
-// $cardwidth: clamp(12em, 20vw, 18em);
-// $cardwidth: clamp(12em, 12vw + 10em, 16em);
 $cardwidth: clamp(12em, 12vw + 10em, 16em);
 
+.whistlist-control {
+  padding: 2em;
+  button {
+    position: absolute;
+    right: 0;
+    top: 4em;
+    border: none;
+    outline: none;
+    margin-right: 0.7em;
+    padding: 0.4em 0.8em;
+    background-color: white;
+    font-size: var(--fs-n);
+    border-radius: 0.2em;
+    cursor: pointer;
+  }
+}
 .whislistBox {
   position: absolute;
   inset: 0;
-  margin-top: 7em;
+  margin-top: 10em;
   padding: 1em;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax($cardwidth, 1fr));
@@ -22,6 +36,24 @@ $cardwidth: clamp(12em, 12vw + 10em, 16em);
     &:is(:hover, :active) {
       transform: scale(1.05);
     }
+
+    .delIcon {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+      background-color: white;
+      background-color: rgba(black, 0.2);
+      cursor: pointer;
+
+      .icon {
+        font-size: var(--fs-xl);
+      }
+    }
   }
 }
 
@@ -33,7 +65,13 @@ $cardwidth: clamp(12em, 12vw + 10em, 16em);
 
 @media screen and (max-width: 400px) {
   .whislistBox {
-    grid-template-rows: 1fr !important;
+    grid-template-rows: 22em !important;
+
+    .delIcon {
+      .icon {
+        font-size: var(--fs-s);
+      }
+    }
   }
 }
 
@@ -44,9 +82,9 @@ $cardwidth: clamp(12em, 12vw + 10em, 16em);
       auto-fill,
       minmax($cardwidth, 1fr)
     ) !important;
-    grid-template-rows: clamp(18em, 15em + 20vw, 25em) !important;
+    grid-template-rows: 25em !important;
     .card {
-      height: clamp(18em, 15em + 20vw, 25em) !important;
+      height: clamp(18em, 18em + 20vw, 25em) !important;
     }
   }
 }

@@ -4,12 +4,13 @@ export const useToggleList = () => {
   const axiosPrivate = useAxiosPrivate();
   const toggleList = async (data) => {
     try {
-      let { id, title, name, poster_path } = data;
+      let { id, title, name, poster_path, posterPath } = data;
       title = title || name;
+      posterPath = poster_path || posterPath;
       const item = {
         id,
         title,
-        posterPath: poster_path,
+        posterPath,
       };
 
       const res = await axiosPrivate.post("/addlist", { item });
