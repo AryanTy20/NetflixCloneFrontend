@@ -233,6 +233,7 @@
 
 @media screen and (max-width: 400px) {
   .login {
+    margin-top: 3em !important;
     width: 95vw;
     padding: 3em 0 !important;
     .login_form {
@@ -243,6 +244,7 @@
 }
 @media screen and (max-width: 750px) and (min-width: 401px) {
   .login {
+    margin-top: 3em !important;
     width: 95vw;
     padding: 3em 0 !important;
     .login_form {

@@ -166,6 +166,7 @@ $error: #c96c05;
 
 @media screen and (max-width: 400px) {
   .register {
+    margin-top: 3em !important;
     padding: 3em !important;
     .register_form {
       width: 80vw !important;
@@ -175,6 +176,7 @@ $error: #c96c05;
 
 @media screen and (max-width: 767px) and (min-width: 401px) {
   .register {
+    margin-top: 3em !important;
     padding: 4em !important;
     .register_form {
       width: 30em !important;
