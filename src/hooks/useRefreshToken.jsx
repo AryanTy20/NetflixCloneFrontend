@@ -12,11 +12,10 @@ export const useRefreshToken = () => {
       });
       return response.data.accessToken;
     } catch (err) {
-      if (err.response.status == 401) {
+      if (err.response?.status == 401) {
         return;
-      } else {
-        setError(err.response.data.message);
       }
+      console.log(err);
     }
   };
   return refresh;
