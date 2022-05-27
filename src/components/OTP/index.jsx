@@ -117,6 +117,7 @@ const OTPField = ({ type, setShowOtp, result, email }) => {
               accessToken: res?.data?.accessToken,
             };
           });
+          localStorage.clear();
           navigate("/", { replace: true });
         }
       } catch (err) {
