@@ -45,7 +45,7 @@ const Register = () => {
       label: "Email",
       type: "email",
       required: true,
-      pattern: "(w+.?)(w*.?){2}@gmail.com|@GMAIL.COM$",
+      pattern: "(\\w+.?)(\\w*.?){2}@gmail.com|@GMAIL.COM$",
       errorMessage: "email should be valid email .",
     },
     {
@@ -55,7 +55,7 @@ const Register = () => {
       type: "text",
       required: true,
       pattern:
-        "^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[#$@!%&*?])[A-Za-zd#$@!%&*?]{8,20}$",
+        "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$@!%&*?])[A-Za-z\\d#$@!%&*?]{8,20}$",
       errorMessage:
         "password should be 8-20 characters long and should at least 1 uppercase , 1 symbol and 1 digit",
     },
