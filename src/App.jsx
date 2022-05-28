@@ -19,8 +19,9 @@ const Setting = lazy(() => import("./pages/settings"));
 const loaderStyle = {
   position: "absolute",
   inset: "0",
-  display: "grid",
-  placeItems: "center",
+  left: "50%",
+  top: "50%",
+  transform: "translate(-50%,-50%)",
   minHeight: "100vh",
   width: "100%",
 };
