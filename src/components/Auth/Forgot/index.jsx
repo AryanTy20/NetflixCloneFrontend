@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Axios } from "../../../helper/axios";
-import { Navbar, OTPField } from "../../";
+import { Navbar, OTPField, CheckInternet } from "../../";
 import "./style.scss";
 
 const ForgotPassword = () => {
@@ -11,6 +11,7 @@ const ForgotPassword = () => {
 
   return (
     <>
+      <CheckInternet />
       <Navbar menu={false} navlink={false} profile={false} />
       <div className="forgotPassword">
         <img
@@ -103,10 +104,14 @@ const ResetForm = ({ email }) => {
     repeatPassword: "",
   });
   const [error, setError] = useState("");
-  const [focused, setFocused] = useState(false);
+  const [passErr, setPassErr] = useState(false);
+  const [pass1, setPass1] = useState(false);
+  const [pass2, setPass2] = useState(false);
   const navigate = useNavigate();
 
-  const resetPass = async () => {
+  const resetPass = async (e) => {
+    e.preventDefault();
+    if (pass.password !== pass.repeatPassword) return;
     try {
       await Axios.post(
         "auth/reset",
@@ -125,21 +130,27 @@ const ResetForm = ({ email }) => {
     }
   };
 
+  useEffect(() => {
+    pass2 && pass.repeatPassword !== pass.password
+      ? setPassErr(true)
+      : setPassErr(false);
+  }, [pass.repeatPassword]);
+
   return (
     <>
       <div className="Form">
-        {error && <p className="error">{error}</p>}
+        {error && <p className="error shake">{error}</p>}
         <h1>Forgot Password</h1>
-        <div className="resetBox">
+        <form className="resetBox" onSubmit={resetPass}>
           <div className="resetField">
             <input
               type="text"
               value={pass.password}
               onChange={(e) => setPass({ ...pass, password: e.target.value })}
               required={true}
-              onBlur={() => setFocused(true)}
-              focused={focused.toString()}
-              pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$@!%&*?])[A-Za-z\\d#$@!%&*?]{8,20}$"
+              onBlur={() => setPass1(true)}
+              focused={pass1.toString()}
+              pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,20}$"
               placeholder="Password"
             />
             <span>
@@ -155,15 +166,15 @@ const ResetForm = ({ email }) => {
                 setPass({ ...pass, repeatPassword: e.target.value })
               }
               required={true}
-              onBlur={() => setFocused(true)}
-              focused={focused.toString()}
-              pattern={pass.password}
+              onBlur={() => setPass2(true)}
+              focused={pass2.toString()}
+              className={passErr ? "passErr" : ""}
               placeholder="Repeat Password"
             />
-            <span>Password not Matched</span>
+            {passErr && <p className="passErrMsg">Password not Matched</p>}
           </div>
-          <button onClick={resetPass}>Submit</button>
-        </div>
+          <button type="submit">Submit</button>
+        </form>
       </div>
     </>
   );

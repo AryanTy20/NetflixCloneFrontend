@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { Axios } from "../../helper/axios";
 import { useAxiosPrivate, useAuth } from "../../hooks";
 import "./style.scss";
@@ -16,6 +16,7 @@ const OTPField = ({ type, setShowOtp, result, email }) => {
     sixth: "",
   });
   const { setAuth } = useAuth();
+  const [pageDuration, setPageDuration] = useState(0);
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const [otpLimit, setOtpLimit] = useState(false);
@@ -34,6 +35,19 @@ const OTPField = ({ type, setShowOtp, result, email }) => {
       e.target?.nextSibling.focus();
     error != "" && setError("");
   };
+  useEffect(() => {
+    const countDown = () => {
+      if (pageDuration != 300) {
+        setPageDuration(pageDuration + 1);
+      } else {
+        clearInterval(interval);
+      }
+    };
+    const interval = setInterval(countDown, 1000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [pageDuration]);
 
   useEffect(() => {
     const countDown = () => {
@@ -87,10 +101,9 @@ const OTPField = ({ type, setShowOtp, result, email }) => {
         );
         result(true);
         setShowOtp(false);
-        return;
       } catch (err) {
         if (err.response?.status == 401) return;
-        err.response.data.message == "OTP limit Reached" && setOtpLimit(true);
+        err.response.status == 408 && setOtpLimit(true);
         setError(err.response.data.message);
       }
     } else {
@@ -122,7 +135,7 @@ const OTPField = ({ type, setShowOtp, result, email }) => {
         }
       } catch (err) {
         if (err.response?.status == 401) return;
-        err.response.data.message == "OTP limit Reached" && setOtpLimit(true);
+        err.response.status == 408 && setOtpLimit(true);
         setError(err.response.data.message);
       }
     }
@@ -172,6 +185,7 @@ const OTPField = ({ type, setShowOtp, result, email }) => {
         }
       } catch (err) {
         if (err.status == 401) return;
+        err.response.status == 408 && setOtpLimit(true);
         setError(err.response.data.message);
       }
     };
@@ -182,106 +196,115 @@ const OTPField = ({ type, setShowOtp, result, email }) => {
       controller.abort();
     };
   }, [count]);
+  console.log("errr", error);
+  console.log("otpLimit", otpLimit);
 
   return (
     <>
-      <div className="otp-box">
-        {otpLimit ? (
-          <div className="otp_max_limit">
-            <h2>OTP LIMIT REACHED</h2>
-            <button onClick={() => navigate("/login", { replace: true })}>
-              Try again later
-            </button>
-          </div>
-        ) : (
-          <div className="otp">
-            <form onSubmit={formSubmit}>
-              {error && <p className="invalid_otp">{error}</p>}
-              <h2>OTP Verification</h2>
-              <div className="input_box">
-                <input
-                  type="text"
-                  className="input_field"
-                  maxLength={1}
-                  value={otp.first}
-                  onChange={(e) => setOtp({ ...otp, first: e.target.value })}
-                  onKeyUp={keyUp}
-                  required
-                />
-                <input
-                  type="text"
-                  className="input_field"
-                  maxLength={1}
-                  value={otp.second}
-                  onChange={(e) => setOtp({ ...otp, second: e.target.value })}
-                  onKeyUp={keyUp}
-                  required
-                />
-                <input
-                  type="text"
-                  className="input_field"
-                  maxLength={1}
-                  value={otp.third}
-                  onChange={(e) => setOtp({ ...otp, third: e.target.value })}
-                  onKeyUp={keyUp}
-                  required
-                />
-                <input
-                  type="text"
-                  className="input_field"
-                  maxLength={1}
-                  value={otp.fourth}
-                  onChange={(e) => setOtp({ ...otp, fourth: e.target.value })}
-                  onKeyUp={keyUp}
-                  required
-                />
-                <input
-                  type="text"
-                  className="input_field"
-                  maxLength={1}
-                  value={otp.fifth}
-                  onChange={(e) => setOtp({ ...otp, fifth: e.target.value })}
-                  onKeyUp={keyUp}
-                  required
-                />
-                <input
-                  type="text"
-                  className="input_field"
-                  maxLength={1}
-                  value={otp.sixth}
-                  onChange={(e) => setOtp({ ...otp, sixth: e.target.value })}
-                  onKeyUp={keyUp}
-                  required
-                />
+      {pageDuration >= 295 ? (
+        <div className="maxTry">
+          <h1>You are taking longer than usual ! </h1>
+          {pageDuration == 300 && <Navigate to="/login" />}
+        </div>
+      ) : (
+        <div className="otp-box">
+          {otpLimit ? (
+            <div className="otp_max_limit">
+              <h2>OTP LIMIT REACHED</h2>
+              <button onClick={() => navigate("/login", { replace: true })}>
+                Try again later
+              </button>
+            </div>
+          ) : (
+            <div className="otp">
+              <form onSubmit={formSubmit}>
+                {error && <p className="invalid_otp">{error}</p>}
+                <h2>OTP Verification</h2>
+                <div className="input_box">
+                  <input
+                    type="text"
+                    className="input_field"
+                    maxLength={1}
+                    value={otp.first}
+                    onChange={(e) => setOtp({ ...otp, first: e.target.value })}
+                    onKeyUp={keyUp}
+                    required
+                  />
+                  <input
+                    type="text"
+                    className="input_field"
+                    maxLength={1}
+                    value={otp.second}
+                    onChange={(e) => setOtp({ ...otp, second: e.target.value })}
+                    onKeyUp={keyUp}
+                    required
+                  />
+                  <input
+                    type="text"
+                    className="input_field"
+                    maxLength={1}
+                    value={otp.third}
+                    onChange={(e) => setOtp({ ...otp, third: e.target.value })}
+                    onKeyUp={keyUp}
+                    required
+                  />
+                  <input
+                    type="text"
+                    className="input_field"
+                    maxLength={1}
+                    value={otp.fourth}
+                    onChange={(e) => setOtp({ ...otp, fourth: e.target.value })}
+                    onKeyUp={keyUp}
+                    required
+                  />
+                  <input
+                    type="text"
+                    className="input_field"
+                    maxLength={1}
+                    value={otp.fifth}
+                    onChange={(e) => setOtp({ ...otp, fifth: e.target.value })}
+                    onKeyUp={keyUp}
+                    required
+                  />
+                  <input
+                    type="text"
+                    className="input_field"
+                    maxLength={1}
+                    value={otp.sixth}
+                    onChange={(e) => setOtp({ ...otp, sixth: e.target.value })}
+                    onKeyUp={keyUp}
+                    required
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className={`btn ${count > 3 && disable ? "disable" : ""}`}
+                >
+                  Verify
+                </button>
+              </form>
+              <div className="remains">
+                {count == 3 && timer == 0 ? (
+                  setOtpLimit(true)
+                ) : (
+                  <p>OTP is valid only for {timer} sec.</p>
+                )}
               </div>
-              <button
-                type="submit"
-                className={`btn ${count > 3 && disable ? "disable" : ""}`}
-              >
-                Verify
-              </button>
-            </form>
-            <div className="remains">
-              {count == 3 && timer == 0 ? (
-                setOtpLimit(true)
-              ) : (
-                <p>OTP is valid only for {timer} sec.</p>
-              )}
+              <div className="other-btn">
+                <button
+                  className={`btn ${disable ? "disable" : ""}`}
+                  onClick={resend}
+                >
+                  Resend
+                </button>
+                <button className="btn" onClick={() => setShowOtp(false)}>
+                  Cancel
+                </button>
+              </div>
             </div>
-            <div className="other-btn">
-              <button
-                className={`btn ${disable ? "disable" : ""}`}
-                onClick={resend}
-              >
-                Resend
-              </button>
-              <button className="btn" onClick={() => setShowOtp(false)}>
-                Cancel
-              </button>
-            </div>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      )}
     </>
   );
 };

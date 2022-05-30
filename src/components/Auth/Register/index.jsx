@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { Axios } from "../../../helper/axios";
 import { Link } from "react-router-dom";
-import { Navbar, OTPField } from "../../";
+import { Navbar, OTPField, CheckInternet } from "../../";
 import "./style.scss";
 
 const Register = () => {
@@ -12,10 +12,12 @@ const Register = () => {
     repeatPassword: "",
   });
   const [showOtp, setShowOtp] = useState(false);
-
+  const [passErr, setPassErr] = useState(false);
   const [error, setError] = useState();
+
   const formHandle = async (e) => {
     e.preventDefault();
+    if (passErr) return;
     try {
       await Axios.post("auth/register", value, {
         headers: {
@@ -24,7 +26,8 @@ const Register = () => {
       });
       setShowOtp(true);
     } catch (err) {
-      err.response?.status == 422 && setError(err.response.data.message);
+      if (err.response?.status == 401) return;
+      setError(err.response?.data?.message);
     }
   };
 
@@ -45,7 +48,7 @@ const Register = () => {
       label: "Email",
       type: "email",
       required: true,
-      pattern: "(\\w+.?)(\\w*.?){2}@gmail.com|@GMAIL.COM$",
+      pattern: "(\\w+.?)(\\w*.?){2}@(gmail.com||Gmail.com)$",
       errorMessage: "email should be valid email .",
     },
     {
@@ -65,8 +68,6 @@ const Register = () => {
       label: "Repeat Password",
       type: "text",
       required: true,
-      pattern: value.password,
-      errorMessage: "passwords not matched",
     },
   ];
 
@@ -74,10 +75,16 @@ const Register = () => {
     setValue({ ...value, [e.target.name]: e.target.value });
   };
 
+  useEffect(() => {
+    value.repeatPassword !== value.password
+      ? setPassErr(true)
+      : setPassErr(false);
+  }, [value.password, value.repeatPassword]);
+
   return (
     <>
+      <CheckInternet />
       <Navbar menu={false} navlink={false} profile={false} />
-
       <div className="registerBox">
         <img src="https://i.ibb.co/gWNCCXD/rgbbig-min.png" loading="lazy" />
         {!showOtp ? (
@@ -87,7 +94,7 @@ const Register = () => {
               onSubmit={formHandle}
               autoComplete="off"
             >
-              {error && <p className="error">{error}</p>}
+              {error && !showOtp && <p className="error shake">{error}</p>}
               <h2>Sign Up</h2>
               <div className="input_box">
                 {inputs.map((input) => (
@@ -96,6 +103,7 @@ const Register = () => {
                     {...input}
                     value={value[input.name]}
                     onChange={onChange}
+                    passErr={passErr}
                   />
                 ))}
               </div>
@@ -120,11 +128,18 @@ const Register = () => {
 
 const FormInput = (props) => {
   const [focused, setFocused] = useState(false);
-  const { label, value, onChange, id, errorMessage, ...inputProps } = props;
+  const { label, value, onChange, id, errorMessage, passErr, ...inputProps } =
+    props;
+  const [passError, setPassError] = useState(false);
 
   const handleFocus = () => {
     setFocused(true);
+    setPassError(passErr);
   };
+  useEffect(() => {
+    focused && setPassError(passErr);
+  }, [passErr]);
+
   return (
     <>
       <div className="input_field" key={id}>
@@ -135,8 +150,12 @@ const FormInput = (props) => {
           onBlur={handleFocus}
           placeholder=" "
           focused={focused.toString()}
+          className={label == "Repeat Password" && passError ? "passErr" : ""}
         />
         <span className="input_error">{errorMessage}</span>
+        {label == "Repeat Password" && passError && (
+          <span className="notmatched">Password not Matched</span>
+        )}
         <label>{label}</label>
       </div>
     </>

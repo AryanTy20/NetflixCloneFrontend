@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { Navbar } from "../../";
+import { Navbar, CheckInternet } from "../../";
 import { useAuth, useLocalStorageList } from "../../../hooks";
 import { Axios } from "../../../helper/axios";
 import "./style.scss";
@@ -44,14 +44,16 @@ const Login = () => {
       err.response?.status >= 400 && setError("Wrong Credentials");
     }
   };
+
   return (
     <>
+      <CheckInternet />
       <Navbar navlink={false} menu={false} profile={false} />
       <div className="loginBox">
         <img src="https://i.ibb.co/gWNCCXD/rgbbig-min.png" loading="lazy" />
         <div className="login">
           <form className="login_form" onSubmit={formHandle}>
-            {error && <p className="error">{error}</p>}
+            {error && <p className="error shake">{error}</p>}
             <h2>Sign In</h2>
             <div className="input_box">
               <div className="user">

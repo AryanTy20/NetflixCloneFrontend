@@ -29,14 +29,15 @@ $error: #c96c05;
   .register {
     margin-top: 8em;
     padding: 6em;
+    max-width: 45em;
     border-radius: 0.25em;
     background-color: rgba(black, 0.7);
 
     .register_form {
-      width: 30em;
+      width: 31em;
 
       .error {
-        border: Solid red 2px;
+        border: Solid red 1px;
         border-radius: 0.2em;
         font-size: var(--fs-n);
         color: red;
@@ -44,6 +45,168 @@ $error: #c96c05;
         font-weight: bold;
         line-height: 2em;
         margin-bottom: 1em;
+        animation: shake alternate 1s;
+      }
+
+      .shake {
+        animation-name: shake-horizontal;
+        animation-duration: 100ms;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: linear;
+      }
+
+      @keyframes shake-horizontal {
+        2% {
+          transform: translate(0px, 0) rotate(0);
+        }
+        4% {
+          transform: translate(-9px, 0) rotate(0);
+        }
+        6% {
+          transform: translate(9px, 0) rotate(0);
+        }
+        8% {
+          transform: translate(1px, 0) rotate(0);
+        }
+        10% {
+          transform: translate(7px, 0) rotate(0);
+        }
+        12% {
+          transform: translate(7px, 0) rotate(0);
+        }
+        14% {
+          transform: translate(7px, 0) rotate(0);
+        }
+        16% {
+          transform: translate(-5px, 0) rotate(0);
+        }
+        18% {
+          transform: translate(3px, 0) rotate(0);
+        }
+        20% {
+          transform: translate(-2px, 0) rotate(0);
+        }
+        22% {
+          transform: translate(-8px, 0) rotate(0);
+        }
+        24% {
+          transform: translate(-5px, 0) rotate(0);
+        }
+        26% {
+          transform: translate(-6px, 0) rotate(0);
+        }
+        28% {
+          transform: translate(-6px, 0) rotate(0);
+        }
+        30% {
+          transform: translate(2px, 0) rotate(0);
+        }
+        32% {
+          transform: translate(-6px, 0) rotate(0);
+        }
+        34% {
+          transform: translate(-6px, 0) rotate(0);
+        }
+        36% {
+          transform: translate(1px, 0) rotate(0);
+        }
+        38% {
+          transform: translate(-3px, 0) rotate(0);
+        }
+        40% {
+          transform: translate(-3px, 0) rotate(0);
+        }
+        42% {
+          transform: translate(1px, 0) rotate(0);
+        }
+        44% {
+          transform: translate(-5px, 0) rotate(0);
+        }
+        46% {
+          transform: translate(-2px, 0) rotate(0);
+        }
+        48% {
+          transform: translate(-3px, 0) rotate(0);
+        }
+        50% {
+          transform: translate(1px, 0) rotate(0);
+        }
+        52% {
+          transform: translate(1px, 0) rotate(0);
+        }
+        54% {
+          transform: translate(5px, 0) rotate(0);
+        }
+        56% {
+          transform: translate(-3px, 0) rotate(0);
+        }
+        58% {
+          transform: translate(3px, 0) rotate(0);
+        }
+        60% {
+          transform: translate(-8px, 0) rotate(0);
+        }
+        62% {
+          transform: translate(-5px, 0) rotate(0);
+        }
+        64% {
+          transform: translate(-3px, 0) rotate(0);
+        }
+        66% {
+          transform: translate(-3px, 0) rotate(0);
+        }
+        68% {
+          transform: translate(-6px, 0) rotate(0);
+        }
+        70% {
+          transform: translate(-4px, 0) rotate(0);
+        }
+        72% {
+          transform: translate(-4px, 0) rotate(0);
+        }
+        74% {
+          transform: translate(-4px, 0) rotate(0);
+        }
+        76% {
+          transform: translate(7px, 0) rotate(0);
+        }
+        78% {
+          transform: translate(-5px, 0) rotate(0);
+        }
+        80% {
+          transform: translate(10px, 0) rotate(0);
+        }
+        82% {
+          transform: translate(-3px, 0) rotate(0);
+        }
+        84% {
+          transform: translate(-3px, 0) rotate(0);
+        }
+        86% {
+          transform: translate(-4px, 0) rotate(0);
+        }
+        88% {
+          transform: translate(-5px, 0) rotate(0);
+        }
+        90% {
+          transform: translate(5px, 0) rotate(0);
+        }
+        92% {
+          transform: translate(1px, 0) rotate(0);
+        }
+        94% {
+          transform: translate(4px, 0) rotate(0);
+        }
+        96% {
+          transform: translate(-8px, 0) rotate(0);
+        }
+        98% {
+          transform: translate(-3px, 0) rotate(0);
+        }
+        0%,
+        100% {
+          transform: translate(0, 0) rotate(0);
+        }
       }
 
       h2 {
@@ -77,9 +240,8 @@ $error: #c96c05;
           border-radius: 0.25em;
           line-height: 3em;
 
-          &:-webkit-autofill {
-            box-shadow: inset 0 0 0 5em #333333;
-            // background-clip: text;
+          &:autofill {
+            background: #333333;
           }
 
           &:invalid[focused="true"] {
@@ -105,6 +267,17 @@ $error: #c96c05;
           }
         }
 
+        .passErr {
+          margin-bottom: 0;
+          border-bottom: solid 2px $error;
+        }
+        .notmatched {
+          display: block;
+          padding: 0.2em;
+          font-size: 12px;
+          color: $error;
+          width: 100%;
+        }
         label {
           position: absolute;
           height: 100%;
@@ -133,10 +306,15 @@ $error: #c96c05;
         border-radius: 0.1em;
         background-color: var(--c-tertery);
         font-family: "Helvetica Neue", "Helvetica ", "Arial", "sans-serif";
+
+        &:is(:focus, :active) {
+          filter: brightness(120%);
+          box-shadow: 2px 2px white;
+        }
       }
 
       .signin-link {
-        margin: 2em 0;
+        margin: 2em 0 0 0;
         font-size: var(--fs-n);
         color: #8c8c8c;
 
@@ -169,7 +347,8 @@ $error: #c96c05;
     margin-top: 3em !important;
     padding: 3em !important;
     .register_form {
-      width: 80vw !important;
+      margin-inline: auto !important;
+      width: 95% !important;
     }
   }
 }
