@@ -345,10 +345,11 @@ $error: #c96c05;
 @media screen and (max-width: 400px) {
   .register {
     margin-top: 3em !important;
-    padding: 3em !important;
+    width: 95vw;
+    padding: 3em 0 !important;
     .register_form {
       margin-inline: auto !important;
-      width: 95% !important;
+      width: 80% !important;
     }
   }
 }
