@@ -7,9 +7,14 @@ const ImageUpload = ({ type, data, edit, initial, close }) => {
   const axiosPrivate = useAxiosPrivate();
   const [files, setFiles] = useState([]);
   const [height, width] = useWindowResizer();
+  const [windowHeight, setWindowHeight] = useState(0);
   const [newUsername, setNewUsername] = useState("");
   const [error, setError] = useState(false);
   const [imgError, setImgError] = useState(false);
+
+  useEffect(() => {
+    setWindowHeight(window.innerHeight);
+  }, [width]);
 
   useEffect(() => {
     initial && setNewUsername(initial?.username);
@@ -102,7 +107,7 @@ const ImageUpload = ({ type, data, edit, initial, close }) => {
 
   return (
     <>
-      <div className="container" style={{ height: `${height}px` }}>
+      <div className="container" style={{ height: `${windowHeight}px` }}>
         <form onSubmit={handleSubmit}>
           <div className={`uploadBox ${error ? "imgError" : ""}`}>
             <Dropzone

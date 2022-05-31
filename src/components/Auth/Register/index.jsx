@@ -13,9 +13,14 @@ const Register = () => {
     repeatPassword: "",
   });
   const [height, width] = useWindowResizer();
+  const [windowHeight, setWindowHeight] = useState(0);
   const [showOtp, setShowOtp] = useState(false);
   const [passErr, setPassErr] = useState(false);
   const [error, setError] = useState();
+
+  useEffect(() => {
+    setWindowHeight(window.innerHeight);
+  }, [width]);
 
   const formHandle = async (e) => {
     e.preventDefault();
@@ -87,7 +92,7 @@ const Register = () => {
     <>
       <CheckInternet />
       <Navbar menu={false} navlink={false} profile={false} />
-      <div className="registerBox" style={{ height: `${height}px` }}>
+      <div className="registerBox" style={{ height: `${windowHeight}px` }}>
         <img src="https://i.ibb.co/gWNCCXD/rgbbig-min.png" loading="lazy" />
         {!showOtp ? (
           <div className="register">

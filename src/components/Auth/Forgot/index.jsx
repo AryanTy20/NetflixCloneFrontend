@@ -9,13 +9,18 @@ const ForgotPassword = () => {
   const [validEmail, setValidEmail] = useState(false);
   const [otpSuccess, setOtpSuccess] = useState(false);
   const [height, width] = useWindowResizer();
+  const [windowHeight, setWindowHeight] = useState(0);
   const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    setWindowHeight(window.innerHeight);
+  }, [width]);
 
   return (
     <>
       <CheckInternet />
       <Navbar menu={false} navlink={false} profile={false} />
-      <div className="forgotPassword" style={{ height: `${height}px` }}>
+      <div className="forgotPassword" style={{ height: `${windowHeight}px` }}>
         <img
           src="https://i.ibb.co/nPQwJdb/login-the-crown-2-1500x1000.jpg"
           loading="lazy"
