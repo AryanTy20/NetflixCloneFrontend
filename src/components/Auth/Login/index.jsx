@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Navbar, CheckInternet } from "../../";
 import { useAuth, useLocalStorageList } from "../../../hooks";
@@ -8,7 +8,6 @@ import "./style.scss";
 const Login = () => {
   const { setAuth } = useAuth();
   const navigate = useNavigate();
-  const inputRef = useRef(null);
   const [error, setError] = useState();
   const [setList] = useLocalStorageList();
   const [showPassword, setShowPassword] = useState(false);
@@ -45,9 +44,6 @@ const Login = () => {
       err.response?.status >= 400 && setError("Wrong Credentials");
     }
   };
-  useEffect(() => {
-    inputRef.current.focus();
-  }, []);
 
   return (
     <>
@@ -62,7 +58,6 @@ const Login = () => {
             <div className="input_box">
               <div className="user">
                 <input
-                  ref={inputRef}
                   type="text"
                   name="username"
                   placeholder=" "
