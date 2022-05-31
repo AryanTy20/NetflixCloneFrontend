@@ -1,5 +1,6 @@
 .loginBox {
   min-height: 100vh;
+  min-height: -webkit-fill-available;
   display: grid;
   position: relative;
   background-color: transparent;
@@ -404,11 +405,6 @@
 }
 
 @media screen and (max-width: 400px) {
-  .loginBox {
-    position: fixed;
-    height: 100%;
-  }
-
   .login {
     margin-top: 3em !important;
     width: 95vw;
