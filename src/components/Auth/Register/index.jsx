@@ -68,6 +68,7 @@ const Register = () => {
       label: "Repeat Password",
       type: "text",
       required: true,
+      errorMessage: "field is required",
     },
   ];
 
