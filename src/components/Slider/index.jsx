@@ -9,7 +9,6 @@ const Slider = () => {
   const axiosPrivate = useAxiosPrivate();
   const [loading, setLoading] = useState(false);
   const [showPop, setShowPop] = useState(false);
-  const [error, setError] = useState();
   const [data, setData] = useState("");
   const modalRef = useRef(null);
   useOnClickOutside([modalRef], () => setShowPop(false));
@@ -29,7 +28,7 @@ const Slider = () => {
         setLoading(false);
       } catch (err) {
         if (err.response.status == 401) return;
-        setError(err.response?.data.message);
+        throw err.response?.data.message;
       }
     };
     get();

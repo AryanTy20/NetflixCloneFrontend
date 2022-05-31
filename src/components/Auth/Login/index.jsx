@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Navbar, CheckInternet } from "../../";
-import { useAuth, useLocalStorageList } from "../../../hooks";
+import { useAuth, useLocalStorageList, useWindowResizer } from "../../../hooks";
 import { Axios } from "../../../helper/axios";
 import "./style.scss";
 
@@ -10,6 +10,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [error, setError] = useState();
   const [setList] = useLocalStorageList();
+  const [height, width] = useWindowResizer();
   const [showPassword, setShowPassword] = useState(false);
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -49,10 +50,7 @@ const Login = () => {
     <>
       <CheckInternet />
       <Navbar navlink={false} menu={false} profile={false} />
-      <div
-        className="loginBox"
-        style={{ height: `${visualViewport.height}px` }}
-      >
+      <div className="loginBox" style={{ height: `${height}px` }}>
         <img src="https://i.ibb.co/gWNCCXD/rgbbig-min.png" loading="lazy" />
         <div className="login">
           <form className="login_form" onSubmit={formHandle}>

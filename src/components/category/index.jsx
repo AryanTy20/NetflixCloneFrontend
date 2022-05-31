@@ -31,7 +31,7 @@ const Category = ({ req }) => {
 
   return (
     <>
-      <div className="main">
+      <div className="main" style={{ height: `${visualViewport.height}px` }}>
         {isLoading ? (
           <Loader />
         ) : (

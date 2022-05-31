@@ -3,17 +3,19 @@ import { Link, useNavigate } from "react-router-dom";
 import { Axios } from "../../../helper/axios";
 import { Navbar, OTPField, CheckInternet } from "../../";
 import "./style.scss";
+import { useWindowResizer } from "../../../hooks";
 
 const ForgotPassword = () => {
   const [validEmail, setValidEmail] = useState(false);
   const [otpSuccess, setOtpSuccess] = useState(false);
+  const [height, width] = useWindowResizer();
   const [email, setEmail] = useState("");
 
   return (
     <>
       <CheckInternet />
       <Navbar menu={false} navlink={false} profile={false} />
-      <div className="forgotPassword">
+      <div className="forgotPassword" style={{ height: `${height}px` }}>
         <img
           src="https://i.ibb.co/nPQwJdb/login-the-crown-2-1500x1000.jpg"
           loading="lazy"

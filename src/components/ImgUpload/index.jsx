@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { Dropzone, FileItem } from "@dropzone-ui/react";
-import { useAxiosPrivate } from "../../hooks";
+import { useAxiosPrivate, useWindowResizer } from "../../hooks";
 import "./style.scss";
 
 const ImageUpload = ({ type, data, edit, initial, close }) => {
   const axiosPrivate = useAxiosPrivate();
   const [files, setFiles] = useState([]);
+  const [height, width] = useWindowResizer();
   const [newUsername, setNewUsername] = useState("");
   const [error, setError] = useState(false);
   const [imgError, setImgError] = useState(false);
@@ -101,7 +102,7 @@ const ImageUpload = ({ type, data, edit, initial, close }) => {
 
   return (
     <>
-      <div className="container">
+      <div className="container" style={{ height: `${height}px` }}>
         <form onSubmit={handleSubmit}>
           <div className={`uploadBox ${error ? "imgError" : ""}`}>
             <Dropzone
