@@ -140,7 +140,7 @@ const Navbar = ({ navlink = true, menu = true, profile = true }) => {
                 <li>Series</li>
               </NavLink>
               <NavLink to="/wishlist">
-                <li>Watchlist</li>
+                <li>WishList</li>
               </NavLink>
             </ul>
           )}
