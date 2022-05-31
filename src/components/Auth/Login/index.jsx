@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Navbar, CheckInternet } from "../../";
 import { useAuth, useLocalStorageList } from "../../../hooks";
@@ -10,7 +10,6 @@ const Login = () => {
   const navigate = useNavigate();
   const [error, setError] = useState();
   const [setList] = useLocalStorageList();
-  const [fullWindow, setFullWindow] = useState();
   const [showPassword, setShowPassword] = useState(false);
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -45,20 +44,12 @@ const Login = () => {
       err.response?.status >= 400 && setError("Wrong Credentials");
     }
   };
-  useEffect(() => {
-    setFullWindow(visualViewport.height);
-  }, [window.innerWidth]);
 
   return (
     <>
       <CheckInternet />
       <Navbar navlink={false} menu={false} profile={false} />
-      <div
-        className="loginBox"
-        style={{
-          height: `${fullWindow}px`,
-        }}
-      >
+      <div className="loginBox">
         <img src="https://i.ibb.co/gWNCCXD/rgbbig-min.png" loading="lazy" />
         <div className="login">
           <form className="login_form" onSubmit={formHandle}>
