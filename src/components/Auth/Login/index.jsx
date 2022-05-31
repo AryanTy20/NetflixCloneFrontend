@@ -10,6 +10,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [error, setError] = useState();
   const [setList] = useLocalStorageList();
+  const [fullWindow, setFullWindow] = useState();
   const [showPassword, setShowPassword] = useState(false);
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -44,12 +45,20 @@ const Login = () => {
       err.response?.status >= 400 && setError("Wrong Credentials");
     }
   };
+  useEffect(() => {
+    setFullWindow(visualViewport.height);
+  }, [window.innerWidth]);
 
   return (
     <>
       <CheckInternet />
       <Navbar navlink={false} menu={false} profile={false} />
-      <div className="loginBox">
+      <div
+        className="loginBox"
+        style={{
+          height: `${fullWindow}px`,
+        }}
+      >
         <img src="https://i.ibb.co/gWNCCXD/rgbbig-min.png" loading="lazy" />
         <div className="login">
           <form className="login_form" onSubmit={formHandle}>
