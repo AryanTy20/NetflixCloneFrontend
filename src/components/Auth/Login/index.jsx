@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Navbar, CheckInternet } from "../../";
-import { useAuth, useLocalStorageList } from "../../../hooks";
+import { useAuth, useLocalStorageList, useWindowResizer } from "../../../hooks";
 import { Axios } from "../../../helper/axios";
 import "./style.scss";
 
@@ -10,6 +10,8 @@ const Login = () => {
   const navigate = useNavigate();
   const [error, setError] = useState();
   const [setList] = useLocalStorageList();
+  const [height, width] = useWindowResizer();
+  const [windowHeight, setWindowHeight] = useState(0);
   const [showPassword, setShowPassword] = useState(false);
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -44,12 +46,15 @@ const Login = () => {
       err.response?.status >= 400 && setError("Wrong Credentials");
     }
   };
+  useEffect(() => {
+    setWindowHeight(window.innerHeight);
+  }, [width]);
 
   return (
     <>
       <CheckInternet />
       <Navbar navlink={false} menu={false} profile={false} />
-      <div className="loginBox">
+      <div className="loginBox" style={{ height: `${windowHeight}px` }}>
         <img src="https://i.ibb.co/gWNCCXD/rgbbig-min.png" loading="lazy" />
         <div className="login">
           <form className="login_form" onSubmit={formHandle}>
