@@ -240,6 +240,12 @@ $error: #c96c05;
           border-radius: 0.25em;
           line-height: 3em;
 
+          &:-webkit-autofill {
+            box-shadow: inset 0 0 0 5em #333333;
+            color: white !important;
+            // background-clip: text;
+          }
+
           &:autofill {
             background: #333333;
           }
@@ -260,7 +266,8 @@ $error: #c96c05;
           }
 
           &:focus ~ label,
-          &:not(:placeholder-shown) ~ label {
+          &:not(:placeholder-shown) ~ label,
+          &:-webkit-autofill ~ label {
             justify-content: start;
             padding-top: 1%;
             font-size: 1.2em;
