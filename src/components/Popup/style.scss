@@ -137,6 +137,7 @@
       margin-left: -3px;
       max-height: 10em;
       overflow: scroll;
+      table-layout: fixed;
 
       th {
         // border-bottom: 1px solid green;
@@ -148,19 +149,16 @@
       td {
         text-align: center;
         margin: 0.3em 0;
-        border: Solid red 2px;
 
         &:first-child {
           text-align: left;
         }
       }
-      // color: red;
     }
   }
   .desc {
     margin: 0em 1em 1em 1em;
     grid-area: desc;
-    // line-height: 1.3em;
     font-size: var(--fs-n);
     text-align: justify;
     text-overflow: ellipsis;
