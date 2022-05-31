@@ -240,11 +240,11 @@ $error: #c96c05;
           border-radius: 0.25em;
           line-height: 3em;
 
-          &:-webkit-autofill {
-            box-shadow: inset 0 0 0 5em #333333;
-            color: white !important;
-            // background-clip: text;
-          }
+          // &:-webkit-autofill {
+          //   box-shadow: inset 0 0 0 5em #333333;
+          //   color: white !important;
+          //   // background-clip: text;
+          // }
 
           &:autofill {
             background: #333333;
