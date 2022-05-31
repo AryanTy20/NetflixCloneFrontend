@@ -22,7 +22,7 @@ const ForgotPassword = () => {
       <Navbar menu={false} navlink={false} profile={false} />
       <div
         className="forgotPassword"
-        style={{ minHeight: `${windowHeight}px` }}
+        style={{ maxHeight: `${windowHeight}px` }}
       >
         <img
           src="https://i.ibb.co/nPQwJdb/login-the-crown-2-1500x1000.jpg"
