@@ -66,6 +66,11 @@ $cardwidth: clamp(12em, 12vw + 10em, 16em);
 @media screen and (max-width: 400px) {
   .whislistBox {
     grid-template-rows: 22em !important;
+    grid-template-columns: repeat(auto-fill, min(45vw, 18em));
+
+    .card {
+      height: 22em !important;
+    }
 
     .delIcon {
       .icon {
