@@ -20,7 +20,10 @@ const ForgotPassword = () => {
     <>
       <CheckInternet />
       <Navbar menu={false} navlink={false} profile={false} />
-      <div className="forgotPassword" style={{ height: `${windowHeight}px` }}>
+      <div
+        className="forgotPassword"
+        style={{ minHeight: `${windowHeight}px` }}
+      >
         <img
           src="https://i.ibb.co/nPQwJdb/login-the-crown-2-1500x1000.jpg"
           loading="lazy"
