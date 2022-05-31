@@ -60,7 +60,7 @@ const Login = () => {
                 <input
                   type="text"
                   name="username"
-                  placeholder=""
+                  placeholder=" "
                   required
                   onKeyUp={(e) => e.target.value.length > 0 && setError("")}
                 />
@@ -70,7 +70,7 @@ const Login = () => {
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
-                  placeholder=""
+                  placeholder=" "
                   required
                   onKeyUp={(e) => e.target.value.length > 0 && setError("")}
                 />
