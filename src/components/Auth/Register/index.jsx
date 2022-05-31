@@ -3,7 +3,6 @@ import { Axios } from "../../../helper/axios";
 import { Link } from "react-router-dom";
 import { Navbar, OTPField, CheckInternet } from "../../";
 import "./style.scss";
-import { useWindowResizer } from "../../../hooks";
 
 const Register = () => {
   const [value, setValue] = useState({
@@ -12,15 +11,9 @@ const Register = () => {
     password: "",
     repeatPassword: "",
   });
-  const [height, width] = useWindowResizer();
-  const [windowHeight, setWindowHeight] = useState(0);
   const [showOtp, setShowOtp] = useState(false);
   const [passErr, setPassErr] = useState(false);
   const [error, setError] = useState();
-
-  useEffect(() => {
-    setWindowHeight(window.innerHeight);
-  }, [width]);
 
   const formHandle = async (e) => {
     e.preventDefault();
@@ -92,7 +85,7 @@ const Register = () => {
     <>
       <CheckInternet />
       <Navbar menu={false} navlink={false} profile={false} />
-      <div className="registerBox" style={{ Height: `${windowHeight}px` }}>
+      <div className="registerBox">
         <img src="https://i.ibb.co/gWNCCXD/rgbbig-min.png" loading="lazy" />
         {!showOtp ? (
           <div className="register">
