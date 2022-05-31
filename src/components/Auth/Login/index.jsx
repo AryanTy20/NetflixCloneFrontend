@@ -54,7 +54,7 @@ const Login = () => {
     <>
       <CheckInternet />
       <Navbar navlink={false} menu={false} profile={false} />
-      <div className="loginBox" style={{ minHeight: `${windowHeight}px` }}>
+      <div className="loginBox" style={{ Height: `${windowHeight}px` }}>
         <img src="https://i.ibb.co/gWNCCXD/rgbbig-min.png" loading="lazy" />
         <div className="login">
           <form className="login_form" onSubmit={formHandle}>

@@ -92,7 +92,7 @@ const Register = () => {
     <>
       <CheckInternet />
       <Navbar menu={false} navlink={false} profile={false} />
-      <div className="registerBox" style={{ minHeight: `${windowHeight}px` }}>
+      <div className="registerBox" style={{ Height: `${windowHeight}px` }}>
         <img src="https://i.ibb.co/gWNCCXD/rgbbig-min.png" loading="lazy" />
         {!showOtp ? (
           <div className="register">
