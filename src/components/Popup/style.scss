@@ -148,6 +148,7 @@
       td {
         text-align: center;
         margin: 0.3em 0;
+        border: Solid red 2px;
 
         &:first-child {
           text-align: left;
@@ -190,17 +191,21 @@
 
     .metaInfo {
       width: 100vw !important;
-      padding: 1em !important;
+      padding: 1em 2em !important;
 
       .title {
         font-size: var(--fs-xl) !important;
       }
       .seasons {
         margin: 0.3em 0 !important;
+
+        td {
+          max-width: 100%/3;
+        }
       }
     }
     .desc {
-      margin: 0.3em 1em;
+      margin: 0.3em 2em;
     }
   }
 }
