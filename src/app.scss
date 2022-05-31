@@ -47,6 +47,7 @@ body {
   font-family: "Helvetica Neue 700", sans-serif;
   overflow-x: hidden;
   overflow-y: scroll;
+  overscroll-behavior: contain;
   user-select: none;
 }
 
