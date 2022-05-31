@@ -52,7 +52,7 @@ const Login = () => {
       <div className="loginBox">
         <img src="https://i.ibb.co/gWNCCXD/rgbbig-min.png" loading="lazy" />
         <div className="login">
-          <form className="login_form" onSubmit={formHandle}>
+          <form className="login_form" onSubmit={formHandle} autoComplete="off">
             {error && <p className="error shake">{error}</p>}
             <h2>Sign In</h2>
             <div className="input_box">
@@ -60,7 +60,7 @@ const Login = () => {
                 <input
                   type="text"
                   name="username"
-                  placeholder=" "
+                  placeholder=""
                   required
                   onKeyUp={(e) => e.target.value.length > 0 && setError("")}
                 />
@@ -70,7 +70,7 @@ const Login = () => {
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
-                  placeholder=" "
+                  placeholder=""
                   required
                   onKeyUp={(e) => e.target.value.length > 0 && setError("")}
                 />
