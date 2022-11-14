@@ -104,7 +104,7 @@ const OTPField = ({ type, setShowOtp, result, email }) => {
       } catch (err) {
         if (err.response?.status == 401) return;
         err.response.status == 408 && setOtpLimit(true);
-        setError(err.response.data.message);
+         err.response.status !== 500 && setError(err.response.data.message);
       }
     } else {
       try {
@@ -136,7 +136,7 @@ const OTPField = ({ type, setShowOtp, result, email }) => {
       } catch (err) {
         if (err.response?.status == 401) return;
         err.response.status == 408 && setOtpLimit(true);
-        setError(err.response.data.message);
+        err.response.status !== 500 && setError(err.response.data.message);
       }
     }
   };
@@ -186,7 +186,7 @@ const OTPField = ({ type, setShowOtp, result, email }) => {
       } catch (err) {
         if (err.status == 401) return;
         err.response.status == 408 && setOtpLimit(true);
-        setError(err.response.data.message);
+        err.response.status !== 500 && setError(err.response.data.message);
       }
     };
 
@@ -196,8 +196,6 @@ const OTPField = ({ type, setShowOtp, result, email }) => {
       controller.abort();
     };
   }, [count]);
-  console.log("errr", error);
-  console.log("otpLimit", otpLimit);
 
   return (
     <>
